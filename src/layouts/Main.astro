@@ -1,0 +1,37 @@
+---
+import { ViewTransitions } from 'astro:transitions'
+import Drawer from '@components/Drawer.svelte'
+import Navbar from '@components/Navbar.svelte'
+import BottomNavbar from '@components/BottomNavbar.svelte'
+
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+const drawerId: string = 'main-drawer'
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body transition:animate="fade">
+    <div class="container mx-auto">
+      <Drawer drawerId={drawerId} client:load>
+        <Navbar drawerId={drawerId} client:load />
+        <div class="h-[calc(100svh-65px)]">
+          <slot />
+        </div>
+        <BottomNavbar client:load />
+      </Drawer>
+    </div>
+  </body>
+</html>
