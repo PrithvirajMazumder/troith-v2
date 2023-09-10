@@ -6,9 +6,7 @@ import Invoices from '@pages/invoices/_components/Invoices.svelte'
 
 <Main title="Invoices">
   <Operation>
-    <div class="p-4" slot="primary-lane">
-      <Invoices client:load />
-    </div>
-    <div class="p-4" slot="secondary-lane">hola</div>
+    <Invoices slot="primary-lane" client:load />
+    <div slot="secondary-lane">hola</div>
   </Operation>
 </Main>

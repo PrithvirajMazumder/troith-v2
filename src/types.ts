@@ -1,10 +1,4 @@
-export type Json =
-  | string
-  | number
-  | boolean
-  | null
-  | { [key: string]: Json | undefined }
-  | Json[]
+export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[]
 
 export interface Database {
   public: {
@@ -54,10 +48,10 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "companies_user_id_fkey"
-            columns: ["user_id"]
-            referencedRelation: "users"
-            referencedColumns: ["id"]
+            foreignKeyName: 'companies_user_id_fkey'
+            columns: ['user_id']
+            referencedRelation: 'users'
+            referencedColumns: ['id']
           }
         ]
       }
@@ -91,30 +85,48 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "invoice_items_invoice_id_fkey"
-            columns: ["invoice_id"]
-            referencedRelation: "invoices"
-            referencedColumns: ["id"]
+            foreignKeyName: 'invoice_items_invoice_id_fkey'
+            columns: ['invoice_id']
+            referencedRelation: 'invoices'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "invoice_items_invoice_tax_fkey"
-            columns: ["invoice_tax"]
-            referencedRelation: "taxations"
-            referencedColumns: ["id"]
+            foreignKeyName: 'invoice_items_invoice_tax_fkey'
+            columns: ['invoice_tax']
+            referencedRelation: 'taxations'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "invoice_items_item_id_fkey"
-            columns: ["item_id"]
-            referencedRelation: "items"
-            referencedColumns: ["id"]
+            foreignKeyName: 'invoice_items_item_id_fkey'
+            columns: ['item_id']
+            referencedRelation: 'items'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "invoice_items_user_id_fkey"
-            columns: ["user_id"]
-            referencedRelation: "users"
-            referencedColumns: ["id"]
+            foreignKeyName: 'invoice_items_user_id_fkey'
+            columns: ['user_id']
+            referencedRelation: 'users'
+            referencedColumns: ['id']
           }
         ]
+      }
+      invoice_statuses: {
+        Row: {
+          id: string
+          name: string | null
+          step: number | null
+        }
+        Insert: {
+          id?: string
+          name?: string | null
+          step?: number | null
+        }
+        Update: {
+          id?: string
+          name?: string | null
+          step?: number | null
+        }
+        Relationships: []
       }
       invoices: {
         Row: {
@@ -123,7 +135,8 @@ export interface Database {
           id: string
           no: string | null
           party_id: string | null
-          tax: string | null
+          status_id: string | null
+          tax_id: string | null
           user_id: string | null
           vehicle_no: string | null
         }
@@ -133,7 +146,8 @@ export interface Database {
           id?: string
           no?: string | null
           party_id?: string | null
-          tax?: string | null
+          status_id?: string | null
+          tax_id?: string | null
           user_id?: string | null
           vehicle_no?: string | null
         }
@@ -143,34 +157,41 @@ export interface Database {
           id?: string
           no?: string | null
           party_id?: string | null
-          tax?: string | null
+          status_id?: string | null
+          tax_id?: string | null
           user_id?: string | null
           vehicle_no?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "invoices_company_id_fkey"
-            columns: ["company_id"]
-            referencedRelation: "companies"
-            referencedColumns: ["id"]
+            foreignKeyName: 'invoices_company_id_fkey'
+            columns: ['company_id']
+            referencedRelation: 'companies'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "invoices_party_id_fkey"
-            columns: ["party_id"]
-            referencedRelation: "parties"
-            referencedColumns: ["id"]
+            foreignKeyName: 'invoices_party_id_fkey'
+            columns: ['party_id']
+            referencedRelation: 'parties'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "invoices_tax_fkey"
-            columns: ["tax"]
-            referencedRelation: "taxations"
-            referencedColumns: ["id"]
+            foreignKeyName: 'invoices_status_id_fkey'
+            columns: ['status_id']
+            referencedRelation: 'invoice_statuses'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "invoices_user_id_fkey"
-            columns: ["user_id"]
-            referencedRelation: "users"
-            referencedColumns: ["id"]
+            foreignKeyName: 'invoices_tax_id_fkey'
+            columns: ['tax_id']
+            referencedRelation: 'taxations'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'invoices_user_id_fkey'
+            columns: ['user_id']
+            referencedRelation: 'users'
+            referencedColumns: ['id']
           }
         ]
       }
@@ -207,16 +228,16 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "items_tax_fkey"
-            columns: ["tax"]
-            referencedRelation: "taxations"
-            referencedColumns: ["id"]
+            foreignKeyName: 'items_tax_fkey'
+            columns: ['tax']
+            referencedRelation: 'taxations'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "items_user_id_fkey"
-            columns: ["user_id"]
-            referencedRelation: "users"
-            referencedColumns: ["id"]
+            foreignKeyName: 'items_user_id_fkey'
+            columns: ['user_id']
+            referencedRelation: 'users'
+            referencedColumns: ['id']
           }
         ]
       }
@@ -262,16 +283,16 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "parties_suggested_tax_fkey"
-            columns: ["suggested_tax"]
-            referencedRelation: "taxations"
-            referencedColumns: ["id"]
+            foreignKeyName: 'parties_suggested_tax_fkey'
+            columns: ['suggested_tax']
+            referencedRelation: 'taxations'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "parties_user_id_fkey"
-            columns: ["user_id"]
-            referencedRelation: "users"
-            referencedColumns: ["id"]
+            foreignKeyName: 'parties_user_id_fkey'
+            columns: ['user_id']
+            referencedRelation: 'users'
+            referencedColumns: ['id']
           }
         ]
       }
@@ -296,16 +317,16 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "party_items_item_id_fkey"
-            columns: ["item_id"]
-            referencedRelation: "items"
-            referencedColumns: ["id"]
+            foreignKeyName: 'party_items_item_id_fkey'
+            columns: ['item_id']
+            referencedRelation: 'items'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "party_items_party_id_fkey"
-            columns: ["party_id"]
-            referencedRelation: "parties"
-            referencedColumns: ["id"]
+            foreignKeyName: 'party_items_party_id_fkey'
+            columns: ['party_id']
+            referencedRelation: 'parties'
+            referencedColumns: ['id']
           }
         ]
       }
@@ -333,10 +354,10 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "taxations_user_id_fkey"
-            columns: ["user_id"]
-            referencedRelation: "users"
-            referencedColumns: ["id"]
+            foreignKeyName: 'taxations_user_id_fkey'
+            columns: ['user_id']
+            referencedRelation: 'users'
+            referencedColumns: ['id']
           }
         ]
       }
