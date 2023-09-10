@@ -3,20 +3,38 @@
   import type { Invoice } from '@pages/invoices/_types/Invoice'
   import { format, parseISO } from 'date-fns'
   import { getTotalPrice } from '@pages/invoices/_uitls/price'
+  import type { InvoiceStatuses } from '../_types/Status'
 
   export let invoice: Invoice
   export let onClick: (invoice: Invoice) => void = () => {}
+
+  const getInvoiceStatusColorName = (status: InvoiceStatuses): string => {
+    switch (status) {
+      case 'draft':
+        return 'warning'
+      case 'confirmed':
+        return 'success'
+      case 'ready':
+        return 'primary'
+      case 'ready':
+        return 'info'
+      default:
+        return 'neutral'
+    }
+  }
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
-  class="border-b p-4 relative group hover:bg-base-200 cursor-pointer duration-300 ease-in-out"
+  class={`border-b bg-${getInvoiceStatusColorName(invoice.status.name)} bg-opacity-[0.03] p-4 relative group hover:bg-opacity-10 cursor-pointer duration-300 ease-in-out`}
   on:click|preventDefault={() => {
     onClick(invoice)
   }}
 >
-  <div class="absolute bg-primary w-16 h-2 top-0 shadow-xl rounded-b-lg group-hover:h-5 duration-300 ease-in-out" />
+  <div
+    class={`absolute bg-${getInvoiceStatusColorName(invoice.status.name)} w-16 h-2 top-0 shadow-xl rounded-b-lg group-hover:h-5 duration-300 ease-in-out`}
+  />
   <h1 class="text-2xl mt-4 font-medium">{invoice.party.name}</h1>
   <div class="flex items-center mt-4 font-bold">
     <p class="text-sm italic flex items-center gap-1">
