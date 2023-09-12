@@ -1,0 +1,13 @@
+---
+import Main from '@layouts/Main.astro'
+import Operation from '@layouts/Operation.astro'
+import CreateInvoiceInfoLane from '@pages/invoices/_components/CreateInvoiceInfoLane.svelte'
+import CreateInvoiceForm from '~/pages/invoices/_components/CreateInvoice.svelte'
+---
+
+<Main title="Create Invoice">
+  <Operation>
+    <CreateInvoiceForm client:load slot="primary-lane" />
+    <CreateInvoiceInfoLane client:visible slot="secondary-lane" />
+  </Operation>
+</Main>
