@@ -15,7 +15,7 @@
     <span class="!rounded-l-full">
       <Icon icon="iconamoon:search-duotone" class="text-xl" />
     </span>
-    <input type="text" placeholder="Search by party name, invioce number" class="input input-bordered !rounded-r-full !w-full" />
+    <input type="text" placeholder="Search by party name, invoice number" class="input input-bordered !rounded-r-full !w-full" />
   </label>
   <a href="/invoices/create" class="btn btn-primary rounded-full capitalize"> 
     <Icon icon="solar:add-circle-outline" class="text-2xl"/>

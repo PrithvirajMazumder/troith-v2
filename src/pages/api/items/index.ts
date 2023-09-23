@@ -1,8 +1,8 @@
 import type { APIRoute } from 'astro'
-import { getAllInvoices } from './_queries'
+import { getAllItems } from './_queries'
 
 export const GET: APIRoute = async () => {
-  const { data, error, status } = await getAllInvoices()
+  const { data, error, status } = await getAllItems()
 
   return new Response(JSON.stringify({
     data,
