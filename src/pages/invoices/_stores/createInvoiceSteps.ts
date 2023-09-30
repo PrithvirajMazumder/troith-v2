@@ -6,16 +6,17 @@ export const createInvoiceSteps: Writable<InvoiceSteps> = writable(invoiceSteps)
 export const currentCreateInvoiceStep: Writable<InvoiceStep> = writable(invoiceSteps[1])
 
 export const setCurrentCreateInvoiceStep = (stepNo: number) => {
-  const unSubscripe = createInvoiceSteps.subscribe((stepsData) => {
+  const unSubscribe = createInvoiceSteps.subscribe((stepsData) => {
     currentCreateInvoiceStep.update(() => stepsData[stepNo])
   })
-  unSubscripe()
+  unSubscribe()
 }
 
 export const completeCreateInvoiceStep = (stepNo: number) => {
   createInvoiceSteps.update((previousSteps) => {
     previousSteps[stepNo].isCompleted = true
     previousSteps[stepNo].isCurrent = true
+    
     return previousSteps
   })
   setCurrentCreateInvoiceStep(stepNo + 1)

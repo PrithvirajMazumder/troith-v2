@@ -13,7 +13,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
-  class={`border-b bg-opacity-[0.03] group p-4 relative group cursor-pointer duration-300 ease-in-out ${$$props.class}`}
+  class={`border-b bg-opacity-[0.03] select-none group p-4 relative group cursor-pointer duration-300 ease-in-out ${$$props.class}`}
   on:click|preventDefault={() => {
     dispatch('click', item)
   }}

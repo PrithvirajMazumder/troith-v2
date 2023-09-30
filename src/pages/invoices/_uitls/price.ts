@@ -1,5 +1,5 @@
-import type { InvoiceItem } from "@pages/invoices/_types/Invoice"
+import type { Item } from "~/types/Item"
 
-export const getTotalPrice = (items: InvoiceItem[]) => {
-  return items.reduce((accumulator, current) => accumulator + current.item.price * current.item.quantity, 0)
+export const getTotalPrice = (items: Pick<Item, 'price' | 'quantity'>[]) => {
+  return items.reduce((accumulator, current) => accumulator + current.price * current.quantity, 0)
 }
