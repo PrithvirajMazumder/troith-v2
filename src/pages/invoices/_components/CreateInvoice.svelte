@@ -2,7 +2,7 @@
   import { currentCreateInvoiceStep, resetCreateInvoiceSteps } from '@pages/invoices/_stores/createInvoiceSteps'
   import Icon from '@iconify/svelte'
   import CreateInvoiceFormWrapper from '@pages/invoices/_components/CreateInvoiceFormWrapper.svelte'
-  import { resetCreateInvoiceData } from '../_stores/createInvoice'
+  import { resetCreateInvoiceData } from '@pages/invoices/_stores/createInvoice'
 </script>
 
 <div class="flex items-center border-b gap-4 pr-4">

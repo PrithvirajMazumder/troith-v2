@@ -19,41 +19,43 @@
   }
 </script>
 
-<Accordion checked class="bg-primary bg-opacity-[0.03] -mb-[10px]">
-  <div slot="title" class="w-full flex items-center">
-    <h3 class="!text-[1rem] text-primary-focus">{$selectedPartyForInvoice.name} (preferred items)</h3>
-    {#if !!partyItems.filter((partyItem) => partyItem.isSelected).length}
-      <h3 class="!text-[1rem] text-primary-focus !text-xs ml-auto">{partyItems.filter((item) => item.isSelected).length} (selected)</h3>
-    {/if}
-  </div>
-  <div slot="content" class="border-violet-200 border-t">
-    {#each partyItems as partyItem, index}
-      {@const isSelected = partyItem.isSelected}
-      <ItemCard
-        on:click={() => {
-          partyItems[index].isSelected = !isSelected
-        }}
-        class="text-primary border-violet-200"
-        item={partyItem}
-        {isSelected}
-      />
-    {/each}
-  </div>
-</Accordion>
-{#if $isLoading}
-  <progress class="progress progress-primary w-full my-0 rounded-none" />
-{/if}
-{#if !$isLoading}
-  <h1 class="text-2xl mb-4 mt-8 ml-4">All Items</h1>
-{/if}
-{#each items as item, index}
-  {@const isSelected = item.isSelected}
-  <ItemCard
-    class="hover:bg-base-200"
-    on:click={() => {
-      items[index].isSelected = !isSelected
-    }}
-    {item}
-    {isSelected}
-  />
-{/each}
+<div class="h-[calc(100svh-8.1rem)] overflow-y-scroll">
+  <Accordion checked class="bg-primary bg-opacity-[0.03] -mb-[10px]">
+    <div slot="title" class="w-full flex items-center">
+      <h3 class="!text-[1rem] text-primary-focus">{$selectedPartyForInvoice.name} (preferred items)</h3>
+      {#if !!partyItems.filter((partyItem) => partyItem.isSelected).length}
+        <h3 class="!text-[1rem] text-primary-focus !text-xs ml-auto">{partyItems.filter((item) => item.isSelected).length} (selected)</h3>
+      {/if}
+    </div>
+    <div slot="content" class="border-violet-200 border-t">
+      {#each partyItems as partyItem, index}
+        {@const isSelected = partyItem.isSelected}
+        <ItemCard
+          on:click={() => {
+            partyItems[index].isSelected = !isSelected
+          }}
+          class="text-primary border-violet-200"
+          item={partyItem}
+          {isSelected}
+        />
+      {/each}
+    </div>
+  </Accordion>
+  {#if $isLoading}
+    <progress class="progress progress-primary w-full my-0 rounded-none" />
+  {/if}
+  {#if !$isLoading}
+    <h1 class="text-2xl mb-4 mt-8 ml-4">All Items</h1>
+  {/if}
+  {#each items as item, index}
+    {@const isSelected = item.isSelected}
+    <ItemCard
+      class="hover:bg-base-200"
+      on:click={() => {
+        items[index].isSelected = !isSelected
+      }}
+      {item}
+      {isSelected}
+    />
+  {/each}
+</div>

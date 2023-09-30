@@ -22,7 +22,7 @@
     Create
   </a>
 </div>
-<div class="relative">
+<div class="relative h-[calc(100svh-10.1rem)] overflow-y-scroll">
   {#if $isLoading}
     <progress class="progress progress-primary rounded-none w-full absolute top-0 left-0" />
   {/if}

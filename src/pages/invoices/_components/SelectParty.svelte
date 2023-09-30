@@ -11,7 +11,7 @@
   })
 </script>
 
-<div class="relative">
+<div class="relative h-[calc(100svh-8.1rem)] overflow-y-scroll">
   {#if $isLoading}
     <progress class="progress progress-primary rounded-none w-full absolute top-0 left-0" />
   {/if}
@@ -20,7 +20,6 @@
       <PartyCard
         {party}
         onClick={(party) => {
-          console.log(party);
           selectPartyForInvoice(party)
           completeCreateInvoiceStep($currentCreateInvoiceStep.stepNo)
         }}
