@@ -1,6 +1,6 @@
 import type { InvoiceSteps } from '@pages/invoices/_types/Step'
 
-export const createInvoiceStepNames = ['Select a party', 'Choose items', 'Choose tax scheme', 'Select bank account'] as const
+export const createInvoiceStepNames = ['select a party', 'choose items', 'configure items', 'choose tax scheme', 'select bank account'] as const
 
 export const invoiceSteps: InvoiceSteps = createInvoiceStepNames.reduce((invoiceStep: InvoiceSteps, stepName, index) => {
   const stepNo = index + 1
